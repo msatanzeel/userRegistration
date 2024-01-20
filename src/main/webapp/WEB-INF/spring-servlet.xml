@@ -49,21 +49,9 @@
             </list>
         </property>
     </bean>
-    <bean class="org.springframework.orm.hibernate5.HibernateTemplate" id="hTemplate">
+    <bean class="org.springframework.orm.hibernate5.HibernateTemplate" id="hibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory"/>
         <property name="checkWriteOperations" value="false" />
-    </bean>
-
-    <bean class="com.tanzeel.repository.dao.UserDaoImpl" id="userDaoImpl">
-        <property name="hibernateTemplate" ref="hTemplate"/>
-    </bean>
-
-    <bean class="com.tanzeel.service.UserServiceImpl" name="userServiceImpl">
-        <property name="userDaoImpl" ref="userDaoImpl"/>
-    </bean>
-
-    <bean class="com.tanzeel.controller.UserController" name="userController">
-        <property name="userServiceImpl" ref="userServiceImpl"/>
     </bean>
 
 

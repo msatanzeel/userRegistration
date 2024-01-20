@@ -7,15 +7,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class UserServiceImpl implements UserService {
     private UserDao userDaoImpl;
+    @Autowired
+    public void setUserDaoImpl(UserDao userDaoImpl) {
+        this.userDaoImpl = userDaoImpl;
+    }
 
     @PostConstruct
     public void init() {

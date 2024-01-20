@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,10 +15,16 @@ import javax.annotation.PostConstruct;
 
 import java.util.List;
 
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+
 @Repository
 public class UserDaoImpl implements UserDao {
     private HibernateTemplate hibernateTemplate;
+
+    @Autowired
+    @Qualifier("hibernateTemplate")
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
+    }
 
     @PostConstruct
     public void init(){
