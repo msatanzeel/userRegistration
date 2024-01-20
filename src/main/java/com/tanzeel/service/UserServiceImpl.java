@@ -1,29 +1,52 @@
 package com.tanzeel.service;
 
+import com.tanzeel.repository.dao.UserDao;
+import com.tanzeel.repository.dao.UserDaoImpl;
 import com.tanzeel.repository.entities.User;
-import org.springframework.stereotype.Repository;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
-@Repository
+@Service
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class UserServiceImpl implements UserService {
-    public User registerUser(User user) {
+    private UserDao userDaoImpl;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("Initialised userServiceImpl");
+    }
+
+
+    @Override
+    public int registerUser(User user) {
+        System.out.println("Inside the user service, registering user " + user);
+        assert userDaoImpl != null : "UserDao is null";
+        return userDaoImpl.insert(user);
+    }
+
+    @Override
+    public User getUserById(String email) {
         return null;
     }
 
-    public User getUserById(Long userId) {
-        return null;
-    }
-
+    @Override
     public List<User> getAllUsers() {
         return null;
     }
 
-    public void deleteUser(Long userId) {
+    @Override
+    public void deleteUser(String email) {
 
     }
 
-    public User updateUser(User user) {
-        return null;
+    @Override
+    public int updateUser(User user) {
+        return 0;
     }
 }

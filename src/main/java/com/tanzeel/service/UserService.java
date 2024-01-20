@@ -5,13 +5,13 @@ import com.tanzeel.repository.entities.User;
 import java.util.List;
 
 public interface UserService {
-    User registerUser(User user);
+    int registerUser(User user);
 
-    User getUserById(Long userId);
+    User getUserById(String email);
 
     List<User> getAllUsers();
 
-    void deleteUser(Long userId);
+    void deleteUser(String email);
 
-    User updateUser(User user);
+    int updateUser(User user);
 }

@@ -2,7 +2,7 @@ package com.tanzeel.controller;
 
 import com.tanzeel.repository.entities.User;
 import com.tanzeel.service.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Setter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@Setter
 public class UserController {
 
-    UserServiceImpl userServiceImpl = new UserServiceImpl();
+    UserServiceImpl userServiceImpl;
     @RequestMapping(value = "/submit_form", method = RequestMethod.POST)
     public String handleForm(@ModelAttribute User user, Model model) {
         System.out.println("The user details are as follows: " + user);
